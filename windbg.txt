@@ -1,0 +1,20 @@
+windbg commands: (oleaut32.dll – 6.1.7601.18679 and vbe7.dll – 7.1.10.42)
+bp oleaut32+(0x6FC50D83-0x6FC30000) “.printf \”Concatenated String= \”; du /c100 poi(poi(ebp+0x10)); gc”
+bp VBE7+(0x100f0436-0x10000000) “.if (poi(edx) == 0x8) { .printf \”Assigning String Type1= \”; du poi(edx+8); g; } .else {gc}”
+bp VBE7+(0x100154A7-0x10000000) “.printf \”Assigning string Type2= \”; du /c100 ebx; g;”
+bp VBE7+(0x10216ece-0x10000000) “.printf \”Creating object \”; du /c100 poi(esp+8); g”
+bp VBE7+(0x10233960-0x10000000) “.printf \”Calling Created object’s function \”; du /c100 poi(esp+4);g;”
+bp VBE7+(0x100153D3-0x10000000) “.printf \”Setting Integer variable= \”; r bx; gc”
+bp VBE7+(0x100F03B1-0x10000000) “.printf \”Assigning string Type3= \”; du /c100 eax; g”
+bp VBE7+(0x100435C4-0x10000000) “.if (bx == 0x8) { .printf \”Assigning string Type4= \”; du /c100 ecx; g; } .else {gc}”
+
+
+windbg commands: (oleaut32.dll – 5.1.2600.5512 and vbe7.dll – 7.0.15.90) – In my VM
+bp oleaut32+(0x7713A9C3-0x77120000) “.printf \”Concatenated String= \”; du /c100 poi(poi(ebp+0x10)); gc”
+bp VBE7+(0x650D041C-0x65000000) “.if (poi(edx) == 0x8) { .printf \”Assigned String= \”; du poi(edx+8); g; } .else {gc}”
+bp VBE7+(0x6500BB31-0x65000000) “.printf \”Assigning string= \”; du /c100 ebx; g;”
+bp VBE7+(0x6521D2AB-0x65000000) “.printf \”Creating object \”; du /c100 poi(esp+8); g”
+bp VBE7+(0x652417AD-0x65000000) “.printf \”Calling Created object’s function \”; du /c100 poi(esp+4);g;”
+bp VBE7+(0x6500985C-0x65000000) “.printf \”Setting Integer variable= \”; r bx; gc”
+bp VBE7+(0x6500AD2C-0x65000000) “.printf \”Assigning string= \”; du /c100 eax; g”
+bp VBE7+(0x6500904D-0x65000000) “.if (bx == 0x8) { .printf \”Assigning string Type4= \”; du /c100 ecx; g; } .else {gc}”
